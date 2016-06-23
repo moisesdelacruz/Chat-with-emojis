@@ -1,52 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Chat Emoji</title>
-	<link rel="stylesheet" href="./stylus/main.css">
+    <meta charset="UTF-8">
+    <title>Chat Emoji</title>
+    <link rel="stylesheet" href="./stylus/main.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<section class="Lading">
-		<header class="header">
-			<div class="wrapper">
-		
-				<nav class="navbar">
-					<ul class="navbar-list">
-					
-						<li class="navbar-list-item">
-							<a href="#">Home</a>
-						</li>
 
-						<li class="navbar-list-item">
-							<a href="#">Blog</a>
-						</li>
+    <div class="containter-opacity"></div>
+     <div class="layoud-wrapper-form">
 
-						<li class="navbar-list-item">
-							<a href="#">Contact</a>
-						</li>
-
-						<li class="navbar-list-item">
-							<a href="#">Acerca de</a>
-						</li>
-
-						<li class="navbar-list-item">
-							<a href="#">Login</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
+        <h2 class="layoud-wrapper-form-title">
+            Insert username
+        </h2>
+                    
+        <form action="./admin.html" method="POST" class="form">
+            <div class="form-login">
+                <label for="email">Username</label>
+                <input type="text" name="email" placeholder="ejemplo@gmail.com" required class="form-login-control">
+            </div>
 
 
-		<section class="container-chat">
-			<div class="container-chat-messages">
-				
-			</div>
-			<form action="#" class="container-chat-form">
-				<textarea class="container-chat-form-text" placeholder="Write messages"></textarea>
-			</form>
-		</section>
+            <div class="form-login">
+                <button type="submit" class="form-login-btn-log">Enter</button>
+            </div>
+        </form>
+                                    
+        </div>
 
-	</section>
+    
+
+
+    <section class="Lading">
+        <header class="header">
+            <div class="wrapper">
+                <div class="container-title">
+                    <h1 class="title">PortChat</h1>
+                </div>
+            </div>
+        </header>
+
+        <section class="container-chat">
+            <div class="container-chat-messages">
+                
+            </div>
+
+            <div class="container-formulario">
+
+                <form action="#" class="container-chat-form">
+
+                    <textarea class="container-chat-form-text" placeholder="Write messages"></textarea>
+
+                    <div class="container-chat-form-content-emojis"></div>
+
+                    <button class="container-chat-form-emoji" type="submit">
+                        <img src="./img/smile.png" alt="Smile" width="30" height="30">
+                    </button>
+
+                    <button type="submit" class="icon-send container-chat-form-send" ></button>
+
+                </form>
+            </div>
+
+        </section>
+        
+    </section>
 </body>
 </html>
