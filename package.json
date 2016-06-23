@@ -1,0 +1,20 @@
+{
+  "name": "chat-with-emojis",
+  "version": "1.0.0",
+
+  "description": "Chat using emojis of twitter",
+   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moisesdelacruz/Chat-with-emojis.git"
+  },
+  "author": "@luixlacrux @moiseslacruz161 @Manuel_Galindez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/moisesdelacruz/Chat-with-emojis/issues"
+  },
+  "homepage": "https://github.com/moisesdelacruz/Chat-with-emojis#readme"
+}
