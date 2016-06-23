@@ -1,8 +1,7 @@
+
 .container-chat
 	height calc(100vh - 54px)
 	position relative
-	
-	
 	
 	&-messages
 		padding 1em
@@ -17,7 +16,56 @@
 		left 0
 		right 0
 		
+		&-content-emojis
+			display none
+		
+		
 		&-text
 			padding .8em
 			resize none
 			width 80%
+			border none
+			position relative
+			box-sizing border-box
+
+			
+		&-emoji
+			border none
+			background none
+			position absolute
+			top 20px
+			
+		&-send
+			width 35px
+			height 35px
+			float right
+			margin-top 10px
+			border none
+			background azul-oscuro
+			border-radius 50%
+			font-size 1.3em
+			
+			
+@media screen and (min-width: 768px)
+	.container-chat-form
+
+		&-send
+			width 40px
+			height 40px
+			margin 5px 0 0 0
+			
+		&-text
+			width 90%
+		
+@media screen and (min-widt: 1000px)
+	.container-chat-form
+
+		&-send
+			width 40px
+			height 40px
+			margin 5px 15px 0 0
+		
+
+
+			
+			
