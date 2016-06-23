@@ -1,9 +1,8 @@
 {
   "name": "chat-with-emojis",
   "version": "1.0.0",
-
   "description": "Chat using emojis of twitter",
-   "main": "index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,5 +15,13 @@
   "bugs": {
     "url": "https://github.com/moisesdelacruz/Chat-with-emojis/issues"
   },
-  "homepage": "https://github.com/moisesdelacruz/Chat-with-emojis#readme"
+  "homepage": "https://github.com/moisesdelacruz/Chat-with-emojis#readme",
+  "dependencies": {
+    "concat-stream": "^1.5.1",
+    "express": "^4.14.0",
+    "level": "^1.4.0",
+    "level-ttl": "^3.1.0",
+    "socket.io": "^1.4.6",
+    "uuid": "^2.0.2"
+  }
 }
