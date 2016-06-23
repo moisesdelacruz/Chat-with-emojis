@@ -4,7 +4,13 @@
   "description": "Chat using emojis of twitter",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "public": "mkdir -p public",
+    "public-files": "npm run public && cp -r src/client/fonts public && cp -r src/client/img public",
+    "stylus": "stylus -c -u nib src/client/stylus/main.styl -o public",
+    "stylus-dev": "stylus -c -u -w nib src/client/stylus/main.styl -o public",
+    "build-js": "NODE_PATH=. browserify -t [ babelify --presets [ es2015 ] ] -t hbsfy  src/client/js/index.js > public/app.js",
+    "build": "npm run public-files && npm run stylus && npm run build-js && npm run server",
+    "server": "http-server public"
   },
   "repository": {
     "type": "git",
