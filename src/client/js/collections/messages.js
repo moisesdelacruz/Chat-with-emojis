@@ -1,11 +1,11 @@
 import Backbone from 'backbone'
-import Message from 'src/client/js/collections/message'
+import Message from 'src/client/js/models/message'
 
-class MessageS extends Backbone.Collection {
+class Messages extends Backbone.Collection {
   constructor (options) {
     super(options)
     this.model = Message
   }
 }
 
-export default Message
+export default Messages

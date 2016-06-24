@@ -11,10 +11,9 @@ import Message from 'src/client/js/models/message'
 import User from 'src/client/js/models/user'
 // Views =========
 import ChatView from 'src/client/js/views/chat/messages'
-//import ChatMessageView from 'src/client/js/views/chat/message'
+import ChatProfileView from 'src/client/js/views/chat/profile'
 import ChatSendView from 'src/client/js/views/chat/sendMessage'
-// set up socket io
-// const socket = io.connect('http://localhost:3000')
+
 
 class Router extends Backbone.Router {
   get routes () {
@@ -25,10 +24,13 @@ class Router extends Backbone.Router {
 
   initialize () {
     this.initEvents() // initializing  globals events
+    // uncomment the following line to enable socket.io
+    // this.initSocket() // initializing  socket events
 
     this.messages = new Messages()
     this.chatView = new ChatView({ collection: this.messages })
     this.chatSendView = new ChatSendView()
+    this.chatProfileView = new ChatProfileView({ model: new User() })
 
     Backbone.history.start({
       root: "/",
@@ -38,10 +40,40 @@ class Router extends Backbone.Router {
 
   initEvents () {
     this.events = {}
-    _.extends(this.events, Backbone.Events)
+    _.extend(this.events, Backbone.Events)
+
+    this.events.on('message:send', text => this.sendMessage(text))
+    this.events.on('message:received', message => this.receivedMessage(message))
+    this.events.on('messages', messages => this.lastMessages(messages))
   }
 
-  addMessage(text) {
+  initSocket () {
+    // set up socket io
+    this.socket = io.connect('http://localhost:3000')
+
+    this.socket.on('message', message => this.events.trigger('message:received', message))
+    this.socket.on('messages', messages => this.events.trigger('messages', messages))
+  }
+
+  start () {
+    this.messages.add(new Message({
+      text: "This is a message of testing",
+      username: "Chat"
+      //date: moment().format()
+    }))
+  }
+
+  lastMessages (messages) {
+    this.messages.reset()
+    messages.forEach(this.receivedMessage, this)
+  }
+
+  receivedMessage (message) {
+    message.text = this.chatSendView.textFormat(message.text)
+    this.messages.add(new Message (message))
+  }
+
+  sendMessage(text) {
     // set up message
     let message = {
       text: text,
@@ -49,9 +81,11 @@ class Router extends Backbone.Router {
       date: moment().format()
     }
     // emit message to server
-    //socket.emit('message' message)
+    //this.socket.emit('message', message)
     // add message to chatView
-    message.text = this.ChatSendView.textFormat(text)
+    message.text = this.chatSendView.textFormat(text)
     this.messages.add(new Message(message))
   }
 }
+
+export default Router

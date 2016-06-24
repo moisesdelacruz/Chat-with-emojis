@@ -2,7 +2,7 @@ import Backbone from 'backbone'
 import $ from 'jquery'
 import es from 'moment/locale/es'
 import moment from 'moment'
-//import template from 'src/client/templates/chat/message.hbs'
+import template from 'src/client/templates/message.hbs'
 
 class Message extends Backbone.View {
   get tagName () { return 'div' }
@@ -12,15 +12,18 @@ class Message extends Backbone.View {
     let message = this.model.toJSON()
     let html = template(message)
     this.$el.html(html)
-    this.created = this.model.get('time')
+    this.created = message.date
+    this.$time = this.$el.find('#date')
     this.updateTime()
     return this
   }
 
   updateTime () {
     let relativeTime = moment(this.created).fromNow()
-    this.$el.find('#date').html(relativeTime)
+    this.$time.html(relativeTime)
     setTimeout(() => this.updateTime(), 60000)
   }
 
 }
+
+export default Message

@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "public": "mkdir -p public",
-    "public-files": "npm run public && cp -r src/client/fonts public && cp -r src/client/img public",
+    "public-files": "npm run public && cp -r src/client/fonts public && cp -r src/client/img public && cp src/client/*.html public",
     "stylus": "stylus -c -u nib src/client/stylus/main.styl -o public",
-    "stylus-dev": "stylus -c -u -w nib src/client/stylus/main.styl -o public",
+    "stylus-dev": "stylus -c -u nib -w  src/client/stylus/main.styl -o public",
     "build-js": "NODE_PATH=. browserify -t [ babelify --presets [ es2015 ] ] -t hbsfy  src/client/js/index.js > public/app.js",
-    "build": "npm run public-files && npm run stylus && npm run build-js && npm run server",
-    "server": "http-server public"
+    "build": "npm run public-files && npm run stylus && npm run build-js",
+    "server": "http-server public",
+    "start": "npm run build && node src/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -23,13 +24,17 @@
   },
   "homepage": "https://github.com/moisesdelacruz/Chat-with-emojis#readme",
   "dependencies": {
+    "backbone": "^1.3.3",
     "concat-stream": "^1.5.1",
     "express": "^4.14.0",
+    "handlebars": "^4.0.5",
+    "jquery": "^3.0.0",
     "level": "^1.4.0",
     "level-ttl": "^3.1.0",
+    "moment": "^2.13.0",
     "socket.io": "^1.4.6",
-    "uuid": "^2.0.2",
-    "moment": "^2.13.0"
+    "uid": "0.0.2",
+    "uuid": "^2.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",

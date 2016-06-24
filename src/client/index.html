@@ -3,65 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat Emoji</title>
-    <link rel="stylesheet" href="./stylus/main.css">
+    <link rel="stylesheet" href="main.css">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	<section class="Lading">
-		<header class="header">
-			<div class="wrapper">
 
-				<nav class="navbar">
-					<ul class="navbar-list">
-
-						<li class="navbar-list-item">
-							<a href="#">Home</a>
-						</li>
-
-						<li class="navbar-list-item">
-							<a href="#">Blog</a>
-						</li>
-
-						<li class="navbar-list-item">
-							<a href="#">Contact</a>
-						</li>
-
-						<li class="navbar-list-item">
-							<a href="#">Acerca de</a>
-						</li>
-
-						<li class="navbar-list-item">
-							<a href="#">Login</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
-
-
-		<section class="container-chat">
-			<div class="container-chat-messages">
-
-			</div>
-			<form action="#" class="container-chat-form">
-				<textarea class="container-chat-form-text" placeholder="Write messages"></textarea>
-			</form>
-		</section>
-
-	</section>
-
-    <div class="containter-opacity"></div>
+    <div class="containter-opacity" id="opacity"></div>
      <div class="layoud-wrapper-form">
 
         <h2 class="layoud-wrapper-form-title">
-            Insert username
+            Insert Your Username
         </h2>
 
-        <form action="./admin.html" method="POST" class="form">
+        <form method="POST" class="form" id="form-popup">
             <div class="form-login">
-                <label for="email">Username</label>
-                <input type="text" name="email" placeholder="ejemplo@gmail.com" required class="form-login-control">
+                <label for="name">Username</label>
+                <input type="text" name="name" placeholder="Write your username here" minlength="4" maxlength="15" required class="form-login-control" id="username">
+                <span class="form-alert-msg">Only acccept letters and numbers</span>
             </div>
 
 
@@ -85,23 +44,26 @@
         </header>
 
         <section class="container-chat">
-            <div class="container-chat-messages">
+            <div class="container-chat-messages" id="chat-messages">
 
             </div>
 
             <div class="container-formulario">
 
-                <form action="#" class="container-chat-form">
+                <form action="#" class="container-chat-form" id="chat-form">
 
-                    <textarea class="container-chat-form-text" placeholder="Write messages"></textarea>
+                    <textarea class="container-chat-form-text" placeholder="Write messages" id="form-message"></textarea>
 
                     <div class="container-chat-form-content-emojis"></div>
 
-                    <button class="container-chat-form-emoji" type="submit">
-                        <img src="./img/smile.png" alt="Smile" width="30" height="30">
-                    </button>
+                    <div class="container-chat-form-buttons">
+                      <button class="container-chat-form-emoji">
+                        😀
+                      </button>
+                      <button type="submit" class="icon-send container-chat-form-send"></button>
+                    </div>
 
-                    <button type="submit" class="icon-send container-chat-form-send" ></button>
+
 
                 </form>
             </div>
@@ -109,5 +71,14 @@
         </section>
 
     </section>
+    <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
+    <script>
+      window.onload = () => {
+        twemoji.size = '72x72'
+        twemoji.parse(document.body)
+      }
+    </script>
+    <!--script src="http://localhost:3000/socket.io/socket.io.js"></script-->
+    <script src="app.js"></script>
 </body>
 </html>

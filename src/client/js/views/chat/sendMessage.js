@@ -11,12 +11,11 @@ class SendMessage extends Backbone.View {
   }
 
   initialize () {
-    this.$textarea = this.$el.find('#message')
+    this.$textarea = this.$el.find('#form-message')
   }
 
   matchEnter (ev) {
-    ev.preventDefault()
-    if (window.matchMedia("(max-width : 800px)").matches){
+    if (window.matchMedia("(min-width : 800px)").matches){
       if (ev.keyCode === 13 && !ev.shiftKey) {
         ev.preventDefault()
         this.$el.submit()
@@ -41,8 +40,10 @@ class SendMessage extends Backbone.View {
       http: /(\b(https?|ftps?|git):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig,
       blank: /\r?\n/g
     }
-    return text.replace(exp.http, '<a href="$1">$1</a>')
+    return text.replace(exp.http, '<a href="$1" target="_blank">$1</a>')
               .replace(exp.blank, '<br/>')
   }
 
 }
+
+export default SendMessage

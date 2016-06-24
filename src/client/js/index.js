@@ -3,5 +3,5 @@ import Router from 'src/client/js/routes'
 import $ from 'jquery'
 
 $(() => {
-  window.App = new Router()
+  window.Chat = new Router()
 })
