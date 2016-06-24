@@ -14,7 +14,7 @@ import ChatView from 'src/client/js/views/chat/messages'
 import ChatProfileView from 'src/client/js/views/chat/profile'
 import ChatSendView from 'src/client/js/views/chat/sendMessage'
 // utils
-import { textFormat } from 'src/client/js/utils'
+import { textFormat, showNotification } from 'src/client/js/utils'
 
 class Router extends Backbone.Router {
   get routes () {
@@ -37,7 +37,9 @@ class Router extends Backbone.Router {
       root: "/",
       pushState: true
     })
-  }
+
+    Notification.requestPermission();
+}
 
   initEvents () {
     this.events = {}
@@ -75,6 +77,8 @@ class Router extends Backbone.Router {
   }
 
   receivedMessage (message) {
+    if (document.hidden) showNotification(message)
+    
     message.text = textFormat(message.text)
     this.messages.add(new Message (message))
   }

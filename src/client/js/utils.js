@@ -16,3 +16,19 @@ export function textFormat (text) {
               .replace(/:o\(/i, twemoji.parse('😱'))
               .replace(/\(y\)/i, twemoji.parse('👍'))
 }
+
+export function showNotification (message) {
+  let titulo = `Tienes un nuevo mensaje de ${message.username}`
+  let options = {
+    icon: "http://www.jebochat.com/images/content/slide3.png",
+    body: message.text
+  }
+
+  if (Notification) {
+    if (Notification.permission === 'granted') {
+      var newNoti = new Notification(titulo, options)
+      setTimeout(newNoti.close.bind(newNoti), 6000)
+    }
+  }
+
+}
