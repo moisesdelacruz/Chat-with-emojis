@@ -1,5 +1,6 @@
 node_modules
 *.log
 public
-messages.db
 dist
+view
+messages.db
