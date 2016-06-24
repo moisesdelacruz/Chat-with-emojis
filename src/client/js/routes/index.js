@@ -25,7 +25,7 @@ class Router extends Backbone.Router {
   initialize () {
     this.initEvents() // initializing  globals events
     // uncomment the following line to enable socket.io
-    // this.initSocket() // initializing  socket events
+    this.initSocket() // initializing  socket events
 
     this.messages = new Messages()
     this.chatView = new ChatView({ collection: this.messages })
@@ -49,7 +49,7 @@ class Router extends Backbone.Router {
 
   initSocket () {
     // set up socket io
-    this.socket = io.connect('http://localhost:3000')
+    this.socket = io.connect('http://0.0.0.0:3000')
 
     this.socket.on('message', message => this.events.trigger('message:received', message))
     this.socket.on('messages', messages => this.events.trigger('messages', messages))
@@ -81,7 +81,7 @@ class Router extends Backbone.Router {
       date: moment().format()
     }
     // emit message to server
-    //this.socket.emit('message', message)
+    this.socket.emit('message', message)
     // add message to chatView
     message.text = this.chatSendView.textFormat(text)
     this.messages.add(new Message(message))

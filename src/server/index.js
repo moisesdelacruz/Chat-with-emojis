@@ -10,7 +10,7 @@ const io = secketio(server)
 
 realtime(server)
 
-app.use(express.static(__dirname + "/public"))
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
 	res.send('hello')

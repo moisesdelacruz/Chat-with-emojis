@@ -10,8 +10,9 @@
     "stylus-dev": "stylus -c -u nib -w  src/client/stylus/main.styl -o public",
     "build-js": "NODE_PATH=. browserify -t [ babelify --presets [ es2015 ] ] -t hbsfy  src/client/js/index.js > public/app.js",
     "build": "npm run public-files && npm run stylus && npm run build-js",
-    "server": "http-server public",
-    "start": "npm run build && node src/server/server.js"
+    "dist": "babel src/server/index.js src/server/**/*.js --out-dir dist --presets es2015",
+    "server": "NODE_PATH=./dist node dist/src/server",
+    "start": "npm run build && npm run server"
   },
   "repository": {
     "type": "git",
@@ -37,6 +38,7 @@
     "uuid": "^2.0.2"
   },
   "devDependencies": {
+    "babel": "^6.5.2",
     "babel-cli": "^6.10.1",
     "babel-preset-es2015": "^6.9.0",
     "babelify": "^7.3.0",
