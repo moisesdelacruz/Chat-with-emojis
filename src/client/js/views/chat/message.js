@@ -12,6 +12,7 @@ class Message extends Backbone.View {
     let message = this.model.toJSON()
     let html = template(message)
     this.$el.html(html)
+    twemoji.parse(this.el)
     this.created = message.date
     this.$time = this.$el.find('#date')
     this.updateTime()

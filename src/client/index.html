@@ -54,10 +54,12 @@
 
                     <textarea class="container-chat-form-text" placeholder="Write messages" id="form-message"></textarea>
 
-                    <div class="container-chat-form-content-emojis"></div>
+                    <div class="container-chat-form-content-emojis" id="emojis">
+                      😀😂😆😇😈😉😊😋😍😎😏😐😒😓😔😘😚😜😝😟😠😡😤😥😱😲😳😴❤💞✌👍👏
+                    </div>
 
                     <div class="container-chat-form-buttons">
-                      <button class="container-chat-form-emoji">
+                      <button class="container-chat-form-emoji" id="btn-emojis">
                         😀
                       </button>
                       <button type="submit" class="icon-send container-chat-form-send"></button>
@@ -72,12 +74,6 @@
 
     </section>
     <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
-    <script>
-      window.onload = () => {
-        twemoji.size = '72x72'
-        twemoji.parse(document.body)
-      }
-    </script>
     <script src="http://10.0.0.54:3000/socket.io/socket.io.js"></script>
     <script src="app.js"></script>
 </body>

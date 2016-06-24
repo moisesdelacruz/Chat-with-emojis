@@ -13,7 +13,8 @@ import User from 'src/client/js/models/user'
 import ChatView from 'src/client/js/views/chat/messages'
 import ChatProfileView from 'src/client/js/views/chat/profile'
 import ChatSendView from 'src/client/js/views/chat/sendMessage'
-
+// utils
+import { textFormat } from 'src/client/js/utils'
 
 class Router extends Backbone.Router {
   get routes () {
@@ -26,7 +27,7 @@ class Router extends Backbone.Router {
     this.initEvents() // initializing  globals events
     // uncomment the following line to enable socket.io
     this.initSocket() // initializing  socket events
-
+    this.initEmojis()
     this.messages = new Messages()
     this.chatView = new ChatView({ collection: this.messages })
     this.chatSendView = new ChatSendView()
@@ -55,6 +56,11 @@ class Router extends Backbone.Router {
     this.socket.on('messages', messages => this.events.trigger('messages', messages))
   }
 
+  initEmojis () {
+    twemoji.size = '36x36'
+    twemoji.parse(document.body)
+  }
+
   start () {
     this.messages.add(new Message({
       text: "This is a message of testing",
@@ -69,7 +75,7 @@ class Router extends Backbone.Router {
   }
 
   receivedMessage (message) {
-    message.text = this.chatSendView.textFormat(message.text)
+    message.text = textFormat(message.text)
     this.messages.add(new Message (message))
   }
 
@@ -83,7 +89,7 @@ class Router extends Backbone.Router {
     // emit message to server
     this.socket.emit('message', message)
     // add message to chatView
-    message.text = this.chatSendView.textFormat(text)
+    message.text = textFormat(text)
     this.messages.add(new Message(message))
   }
 }

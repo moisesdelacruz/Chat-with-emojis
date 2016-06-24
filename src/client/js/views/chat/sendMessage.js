@@ -6,12 +6,17 @@ class SendMessage extends Backbone.View {
   get events () {
     return {
       'submit': 'sendMessage',
-      'keypress': 'matchEnter'
+      'keypress': 'matchEnter',
+      'click #btn-emojis': 'showEmojis',
+      'click #emojis .emoji': 'insertEmoji'
     }
   }
 
   initialize () {
     this.$textarea = this.$el.find('#form-message')
+    this.$emojis = this.$el.find('#emojis')
+    this.$body = this.$el.closest('body')
+    this.$body.click(this.hideEmojis.bind(this))
   }
 
   matchEnter (ev) {
@@ -35,13 +40,20 @@ class SendMessage extends Backbone.View {
     }
   }
 
-  textFormat (text) {
-    let exp = {
-      http: /(\b(https?|ftps?|git):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig,
-      blank: /\r?\n/g
-    }
-    return text.replace(exp.http, '<a href="$1" target="_blank">$1</a>')
-              .replace(exp.blank, '<br/>')
+  showEmojis (ev) {
+    ev.stopPropagation()
+    ev.preventDefault()
+    this.$emojis.fadeToggle(200)
+  }
+  hideEmojis (ev) {
+    this.$emojis.fadeOut(200)
+  }
+
+  insertEmoji (ev) {
+    let $emoji = $(ev.target)[0]
+    this.$textarea
+      .val(this.$textarea.val() + `${$emoji.alt}`)
+      .focus()
   }
 
 }
