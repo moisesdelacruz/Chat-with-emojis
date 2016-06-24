@@ -49,7 +49,7 @@ class Router extends Backbone.Router {
 
   initSocket () {
     // set up socket io
-    this.socket = io.connect('http://0.0.0.0:3000')
+    this.socket = io.connect('http://10.0.0.54:3000')
 
     this.socket.on('message', message => this.events.trigger('message:received', message))
     this.socket.on('messages', messages => this.events.trigger('messages', messages))
