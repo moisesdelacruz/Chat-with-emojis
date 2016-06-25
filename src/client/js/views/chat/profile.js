@@ -13,9 +13,11 @@ class Profile extends Backbone.View {
     this.$parent = this.$el.closest('.layoud-wrapper-form')
     this.$inputUsername = this.$el.find('#username')
     this.$opacity = $('#opacity')
-    this.$opacity.click(this.hideFormPopup.bind(this))
-    this.showFormPopup()
     //this.listenTo(this.model, 'change', this.render, this)
+    if (!localStorage.getItem('username')) {
+      this.$opacity.click(this.hideFormPopup.bind(this))
+      this.showFormPopup()
+    } else this.setUsername()
   }
 
   showFormPopup (ev) {
@@ -32,8 +34,12 @@ class Profile extends Backbone.View {
   }
 
   setUsername (ev) {
-    ev.preventDefault()
-    let username = this.$inputUsername.val()
+    let username;
+    if (ev) {
+      ev.preventDefault()
+      username = this.$inputUsername.val()
+      localStorage.setItem('username', username)
+    } else username = localStorage.getItem('username')
     let exp = /^[a-z\d_]{4,15}$/i
     if (exp.test(username)) {
       this.model.set('username', username)

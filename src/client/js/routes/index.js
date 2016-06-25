@@ -13,6 +13,7 @@ import User from 'src/client/js/models/user'
 import ChatView from 'src/client/js/views/chat/messages'
 import ChatProfileView from 'src/client/js/views/chat/profile'
 import ChatSendView from 'src/client/js/views/chat/sendMessage'
+import HeaderView from 'src/client/js/views/app/header'
 // utils
 import { textFormat, showNotification } from 'src/client/js/utils'
 
@@ -32,6 +33,7 @@ class Router extends Backbone.Router {
     this.chatView = new ChatView({ collection: this.messages })
     this.chatSendView = new ChatSendView()
     this.chatProfileView = new ChatProfileView({ model: new User() })
+    this.headerView = new HeaderView()
 
     Backbone.history.start({
       root: "/",
@@ -52,7 +54,7 @@ class Router extends Backbone.Router {
 
   initSocket () {
     // set up socket io
-    this.socket = io.connect('http://10.0.0.54:3000')
+    this.socket = io.connect('http://localhost:3000')
 
     this.socket.on('message', message => this.events.trigger('message:received', message))
     this.socket.on('messages', messages => this.events.trigger('messages', messages))
@@ -78,7 +80,7 @@ class Router extends Backbone.Router {
 
   receivedMessage (message) {
     if (document.hidden) showNotification(message)
-    
+
     message.text = textFormat(message.text)
     this.messages.add(new Message (message))
   }

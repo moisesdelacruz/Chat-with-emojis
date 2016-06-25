@@ -8,73 +8,53 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 </head>
 <body>
-
     <div class="containter-opacity" id="opacity"></div>
-     <div class="layoud-wrapper-form">
-
-        <h2 class="layoud-wrapper-form-title">
-            Insert Your Username
-        </h2>
-
-        <form method="POST" class="form" id="form-popup">
-            <div class="form-login">
-                <label for="name">Username</label>
-                <input type="text" name="name" placeholder="Write your username here" minlength="4" maxlength="15" required class="form-login-control" id="username">
-                <span class="form-alert-msg">Only acccept letters and numbers</span>
-            </div>
-
-
-            <div class="form-login">
-                <button type="submit" class="form-login-btn-log">Enter</button>
-            </div>
-        </form>
-
+    <div class="layoud-wrapper-form">
+      <h2 class="layoud-wrapper-form-title">
+        Insert Your Username
+      </h2>
+      <form method="POST" class="form" id="form-popup">
+          <div class="form-login">
+              <label for="name">Username</label>
+              <input type="text" name="name" placeholder="Write your username here" minlength="4" maxlength="15" required class="form-login-control" id="username">
+              <span class="form-alert-msg">Only acccept letters and numbers</span>
+          </div>
+          <div class="form-login">
+              <button type="submit" class="form-login-btn-log">Enter</button>
+          </div>
+      </form>
+    </div>
+    <header class="header">
+        <div class="container-title wrapper">
+            <h1 class="title">PortChat</h1>
+            <nav class="nav">
+              <ul class="items">
+                <li class="item"><a href="https://github.com/moisesdelacruz/Chat-with-emojis" target='_black'>View Project in GitHub</a></li>
+                <li class="item" id="change-username"><a href="#">Change Username</a></li>
+              </ul>
+            </nav>
         </div>
-
-
-
-
-    <section class="Lading">
-        <header class="header">
-            <div class="wrapper">
-                <div class="container-title">
-                    <h1 class="title">PortChat</h1>
+    </header>
+    <section class="container-chat">
+        <div class="container-chat-messages" id="chat-messages">
+        </div>
+        <div class="container-formulario">
+            <form action="#" class="container-chat-form" id="chat-form">
+                <textarea class="container-chat-form-text" placeholder="Write messages" id="form-message"></textarea>
+                <div class="container-chat-form-content-emojis" id="emojis">
+                    😀😂😆😇😈😉😊😋😍😎😏😐😒😓😔😘😚😜😝😟😠😡😤😥😱😲😳😴❤💞✌👍👏
                 </div>
-            </div>
-        </header>
-
-        <section class="container-chat">
-            <div class="container-chat-messages" id="chat-messages">
-
-            </div>
-
-            <div class="container-formulario">
-
-                <form action="#" class="container-chat-form" id="chat-form">
-
-                    <textarea class="container-chat-form-text" placeholder="Write messages" id="form-message"></textarea>
-
-                    <div class="container-chat-form-content-emojis" id="emojis">
-                      😀😂😆😇😈😉😊😋😍😎😏😐😒😓😔😘😚😜😝😟😠😡😤😥😱😲😳😴❤💞✌👍👏
-                    </div>
-
-                    <div class="container-chat-form-buttons">
-                      <button class="container-chat-form-emoji" id="btn-emojis">
+                <div class="container-chat-form-buttons">
+                    <button class="container-chat-form-emoji" id="btn-emojis">
                         😀
-                      </button>
-                      <button type="submit" class="icon-send container-chat-form-send"></button>
-                    </div>
-
-
-
-                </form>
-            </div>
-
-        </section>
-
+                    </button>
+                    <button type="submit" class="icon-send container-chat-form-send"></button>
+                </div>
+            </form>
+        </div>
     </section>
     <script src="//twemoji.maxcdn.com/twemoji.min.js"></script>
-    <script src="http://10.0.0.54:3000/socket.io/socket.io.js"></script>
+    <script src="http://localhost:3000/socket.io/socket.io.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
