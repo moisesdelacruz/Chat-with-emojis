@@ -5,14 +5,16 @@ import es from 'moment/locale/es'
 
 class User extends Backbone.Model {
   default () {
-    return {
-      'username': `Guest-${uid(6)}`,
-      'join': moment().format()
-    }
+    let data = { username: `Guest-${uid(6)}`, join: moment().format() }
+    localStorage.setItem('username', data.username)
+    return data
   }
 
   initialize () {
-    this.attributes = this.default()
+    if(!localStorage.getItem('username'))
+      this.attributes = this.default()
+    else
+      this.attributes = { username: localStorage.getItem('username') }
   }
 }
 

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "public": "mkdir -p public views",
-    "public-files": "npm run public && cp -r src/client/fonts public && cp -r src/client/img public && cp src/client/*.html views",
+    "public-files": "npm run public && cp -r src/client/fonts public && cp -r src/client/sounds public && cp -r src/client/img public && cp src/client/*.html views",
     "stylus": "stylus -c -u nib src/client/stylus/main.styl -o public",
     "stylus-dev": "stylus -c -u nib -w  src/client/stylus/main.styl -o public",
     "build-js": "NODE_PATH=. browserify -t [ babelify --presets [ es2015 ] ] -t hbsfy  src/client/js/index.js > public/app.js",

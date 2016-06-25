@@ -41,6 +41,8 @@ class Router extends Backbone.Router {
     })
 
     Notification.requestPermission();
+    this.sound = document.createElement('audio')
+    this.sound.src = '/sounds/sound.mp3'
 }
 
   initEvents () {
@@ -68,8 +70,8 @@ class Router extends Backbone.Router {
   start () {
     this.messages.add(new Message({
       text: "This is a message of testing",
-      username: "Chat"
-      //date: moment().format()
+      username: "Chat",
+      date: moment().format()
     }))
   }
 
@@ -80,6 +82,7 @@ class Router extends Backbone.Router {
 
   receivedMessage (message) {
     if (document.hidden) showNotification(message)
+    this.sound.play()
 
     message.text = textFormat(message.text)
     this.messages.add(new Message (message))
