@@ -56,7 +56,7 @@ class Router extends Backbone.Router {
 
   initSocket () {
     // set up socket io
-    this.socket = io.connect('https://chat-emojis.herokuapp.com')
+    this.socket = io.connect('https://localhost:3000')
 
     this.socket.on('message', message => this.events.trigger('message:received', message))
     this.socket.on('messages', messages => this.events.trigger('messages', messages))
