@@ -14,7 +14,6 @@ export function textFormat (text) {
               .replace(/<3/, '❤')
               .replace(/;\(/, '😥')
               .replace(/:\(/, '😒')
-              .replace(/:\//, '😏')
               .replace(/:o/i, '😱')
               .replace(/x\)/i, '😲')
               .replace(/\(y\)/i, '👍')
