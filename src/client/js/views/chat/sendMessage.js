@@ -8,7 +8,8 @@ class SendMessage extends Backbone.View {
       'submit': 'sendMessage',
       'keypress': 'matchEnter',
       'click #btn-emojis': 'showEmojis',
-      'click #emojis .emoji': 'insertEmoji'
+      'click #emojis .emoji': 'insertEmoji',
+      'click #btn-like': 'insertLike'
     }
   }
 
@@ -54,6 +55,12 @@ class SendMessage extends Backbone.View {
     this.$textarea
       .val(this.$textarea.val() + `${$emoji.alt}`)
       .focus()
+  }
+
+  insertLike (ev) {
+    let like = '👍'
+    this.$textarea.val(like)
+    this.sendMessage(ev)
   }
 
 }

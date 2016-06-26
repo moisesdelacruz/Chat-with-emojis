@@ -5,16 +5,18 @@ export function textFormat (text) {
   }
   return text.replace(exp.http, '<a href="$1" target="_blank">$1</a>')
               .replace(exp.blank, '<br/>')
-              .replace(/:\)/, twemoji.parse('😀'))
-              .replace(/:D/, twemoji.parse('😆'))
-              .replace(/o:/i, twemoji.parse('😇'))
-              .replace(/;\)/, twemoji.parse('😉'))
-              .replace(/:p/i, twemoji.parse('😋'))
-              .replace(/:\*/, twemoji.parse('😘'))
-              .replace(/<3/, twemoji.parse('❤'))
-              .replace(/;\(/, twemoji.parse('😥'))
-              .replace(/:o\(/i, twemoji.parse('😱'))
-              .replace(/\(y\)/i, twemoji.parse('👍'))
+              .replace(/:\)/, '😀')
+              .replace(/:D/, '😆')
+              .replace(/o:/i, '😇')
+              .replace(/;\)/, '😉')
+              .replace(/:p/i, '😋')
+              .replace(/:\*/, '😘')
+              .replace(/<3/, '❤')
+              .replace(/;\(/, '😥')
+              .replace(/:\(/, '😒')
+              .replace(/:o/i, '😱')
+              .replace(/x\)/i, '😲')
+              .replace(/\(y\)/i, '👍')
 }
 
 export function showNotification (message) {

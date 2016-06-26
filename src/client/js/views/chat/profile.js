@@ -14,8 +14,8 @@ class Profile extends Backbone.View {
     this.$inputUsername = this.$el.find('#username')
     this.$opacity = $('#opacity')
     //this.listenTo(this.model, 'change', this.render, this)
+    this.$opacity.click(this.hideFormPopup.bind(this))
     if (!localStorage.getItem('username')) {
-      this.$opacity.click(this.hideFormPopup.bind(this))
       this.showFormPopup()
     } else this.setUsername()
   }

@@ -56,7 +56,7 @@ class Router extends Backbone.Router {
 
   initSocket () {
     // set up socket io
-    this.socket = io.connect('https://localhost:3000')
+    this.socket = io.connect('http://localhost:3000')
 
     this.socket.on('message', message => this.events.trigger('message:received', message))
     this.socket.on('messages', messages => this.events.trigger('messages', messages))
@@ -77,6 +77,7 @@ class Router extends Backbone.Router {
 
   lastMessages (messages) {
     this.messages.reset()
+    console.log('He recibido los ultimos 10 mensajes')
     messages.forEach(this.receivedMessage, this)
   }
 
@@ -85,6 +86,7 @@ class Router extends Backbone.Router {
     this.sound.play()
 
     message.text = textFormat(message.text)
+    message.date = moment().format()
     this.messages.add(new Message (message))
   }
 
@@ -92,13 +94,13 @@ class Router extends Backbone.Router {
     // set up message
     let message = {
       text: text,
-      username: this.chatProfileView.model.get('username'),
-      date: moment().format()
+      username: this.chatProfileView.model.get('username')
     }
     // emit message to server
     this.socket.emit('message', message)
     // add message to chatView
     message.text = textFormat(text)
+    message.date = moment().format()
     this.messages.add(new Message(message))
   }
 }
