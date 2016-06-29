@@ -30,10 +30,11 @@ class Router extends Backbone.Router {
     this.initSocket() // initializing  socket events
     this.initEmojis()
     this.messages = new Messages()
-    this.chatView = new ChatView({ collection: this.messages })
-    this.chatSendView = new ChatSendView()
-    this.chatProfileView = new ChatProfileView({ model: new User() })
     this.headerView = new HeaderView()
+    this.chatSendView = new ChatSendView()
+    this.chatView = new ChatView({ collection: this.messages })
+    this.chatProfileView = new ChatProfileView({ model: new User() })
+
 
     Backbone.history.start({
       root: "/",
@@ -70,7 +71,7 @@ class Router extends Backbone.Router {
   start () {
     this.messages.add(new Message({
       text: "This is a message of testing",
-      username: "Chat",
+      user: { id: "123g2qu", username: "Chat", join: moment().format() },
       date: moment().format()
     }))
   }
@@ -87,6 +88,8 @@ class Router extends Backbone.Router {
 
     message.text = textFormat(message.text)
     message.date = moment().format()
+    if (message.user.id === this.chatProfileView.model.get('id'))
+      message.me = true
     this.messages.add(new Message (message))
   }
 
@@ -94,13 +97,14 @@ class Router extends Backbone.Router {
     // set up message
     let message = {
       text: text,
-      username: this.chatProfileView.model.get('username')
+      user: this.chatProfileView.model.toJSON()
     }
     // emit message to server
     this.socket.emit('message', message)
     // add message to chatView
     message.text = textFormat(text)
     message.date = moment().format()
+    message.me = true
     this.messages.add(new Message(message))
   }
 }
