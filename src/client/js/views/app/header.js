@@ -15,7 +15,8 @@ class HeaderView extends Backbone.View {
   }
 
   changeUsername (ev) {
-    this.username.val(localStorage.getItem('username'))
+    if (localStorage.user)
+      this.username.val(JSON.parse(localStorage.user).username)
     Chat.chatProfileView.showFormPopup(ev)
   }
 }

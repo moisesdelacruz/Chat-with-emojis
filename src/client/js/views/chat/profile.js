@@ -15,9 +15,9 @@ class Profile extends Backbone.View {
     this.$opacity = $('#opacity')
     //this.listenTo(this.model, 'change', this.render, this)
     this.$opacity.click(this.hideFormPopup.bind(this))
-    if (!localStorage.getItem('username')) {
+    if (!localStorage.user) {
       this.showFormPopup()
-    } else this.setUsername()
+    }
   }
 
   showFormPopup (ev) {
@@ -34,16 +34,15 @@ class Profile extends Backbone.View {
   }
 
   setUsername (ev) {
-    let username;
-    if (ev) {
-      ev.preventDefault()
-      username = this.$inputUsername.val()
-      localStorage.setItem('username', username)
-    } else username = localStorage.getItem('username')
+    if (ev) ev.preventDefault()
+
+    let username = this.$inputUsername.val()
     let exp = /^[a-z\d_]{4,15}$/i
+
     if (exp.test(username)) {
       this.model.set('username', username)
       this.hideFormPopup()
+      localStorage.user = JSON.stringify(this.model.toJSON())
       this.$inputUsername.removeClass('alert')
     } else {
       this.$inputUsername.addClass('alert')

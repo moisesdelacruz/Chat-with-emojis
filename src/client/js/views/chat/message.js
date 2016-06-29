@@ -12,7 +12,7 @@ class Message extends Backbone.View {
     let message = this.model.toJSON()
     let html = template(message)
     this.$el.html(html)
-    this.addClassMe(message.username)
+    this.addClassMe(message)
     twemoji.parse(this.el)
     this.created = message.date
     this.$time = this.$el.find('#date')
@@ -20,8 +20,8 @@ class Message extends Backbone.View {
     return this
   }
 
-  addClassMe (username) {
-    if (username === localStorage.getItem('username'))
+  addClassMe (message) {
+    if (message.me)
       this.$el.addClass('me')
   }
 

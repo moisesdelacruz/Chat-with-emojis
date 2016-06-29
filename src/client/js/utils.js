@@ -20,7 +20,7 @@ export function textFormat (text) {
 }
 
 export function showNotification (message) {
-  let titulo = `Tienes un nuevo mensaje de ${message.username}`
+  let titulo = `Tienes un nuevo mensaje de ${message.user.username}`
   let options = {
     icon: "/img/logo.png",
     body: message.text
