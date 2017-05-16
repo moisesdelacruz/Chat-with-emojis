@@ -9,7 +9,7 @@
     "public-files": "npm run public && cp -r src/client/fonts public && cp -r src/client/sounds public && cp -r src/client/img public && cp src/client/*.html views",
     "stylus": "stylus -c -u nib src/client/stylus/main.styl -o public",
     "stylus-dev": "stylus -c -u nib -w  src/client/stylus/main.styl -o public",
-    "build-js": "NODE_PATH=. browserify -t [ babelify --presets [ es2015 ] ] -t hbsfy  src/client/js/index.js > public/app.js",
+    "build-js": "NODE_PATH=. browserify -t [ babelify --presets [ es2015 ] ] -t hbsfy -g uglifyify src/client/js/index.js > public/app.js",
     "build": "npm run public-files && npm run stylus && npm run build-js",
     "dist": "babel src/server/index.js src/server/**/*.js --out-dir dist --presets es2015",
     "server": "NODE_PATH=./dist node dist/src/server",
@@ -19,7 +19,7 @@
     "type": "git",
     "url": "git+https://github.com/moisesdelacruz/Chat-with-emojis.git"
   },
-  "author": "@luixlacrux @moiseslacruz161 @Manuel_Galindez",
+  "author": "@luixlacrux @moisesdelacruz @jgalianoz",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/moisesdelacruz/Chat-with-emojis/issues"
@@ -45,6 +45,7 @@
     "socket.io": "^1.4.6",
     "socket.io-client": "^1.4.8",
     "stylus": "^0.54.5",
+    "uglifyify": "^3.0.4",
     "uid": "0.0.2",
     "uuid": "^2.0.2"
   }
